@@ -7,3 +7,22 @@ body {
 .App {
   text-align: center;
 }
+
+.room-img{
+  width: 200px;
+}
+
+.room{
+  width: 250px;
+  height: 300px;
+  margin: 2%;
+}
+
+.flex-container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  height: auto;
+}

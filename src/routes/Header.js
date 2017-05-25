@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { Nav, Collapse, Navbar, NavbarBrand, NavItem } from 'react-bootstrap';
 
-export default class Example extends React.Component {
+export default class Header extends React.Component {
   render() {
     return (
       <div>

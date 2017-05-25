@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //components
 import Header from './routes/Header';
-import About from './routes/About/About';
-import Book from './routes/Book/Book';
-import Home from './routes/Home/Home';
+import About from './routes/about/About';
+import Book from './routes/book/Book';
+import Home from './routes/home/Home';
 import NotFound from './routes/NotFound';
 
-//class App extends Component {
 const App = () => (
   <BrowserRouter>
     <div className="container-fluid">
@@ -22,13 +21,6 @@ const App = () => (
     </div>
   </BrowserRouter>
 );
-//   render() {
-//     return (
-//       <div className="App">
-//         Hello
-//       </div>
-//     );
-//   }
-// }
+
 
 export default App;
