@@ -10,33 +10,19 @@ import moment from 'moment';
 //   }
 // };
 const select = {
-  room: 'undefined',
-  arrive: moment()._d.getTime(),
-  depart: moment().add(1, 'day')._d.getTime()
+  room: false,
+  arrive: moment().toDate().getTime(),
+  depart: moment().add(1, 'day').toDate().getTime()
 }
 
 export default function Customer(state={selectedRoom:select, logged:false}, action){
   switch (action.type) {
-    case CustomerActionTypes.SELECT_DATE: {
-      let newDate = {
-        ...state.selectedRoom
-      };
-      newDate["arrive"] = action.come;
-      newDate["depart"] = action.go;
-      return {
-        ...state,
-        selectedRoom: newDate
-      }
-    }
 
     case CustomerActionTypes.SELECT_ROOM: {
-      let select = {
-        ...state.selectedRoom
-      };
-      select.room = action.room;
+      console.log("action", Date(action.room.depart))
       return {
         ...state,
-        selectedRoom: select
+        selectedRoom: action.room
       }
     }
 

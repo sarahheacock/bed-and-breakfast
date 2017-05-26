@@ -1,5 +1,5 @@
 import React from 'react';
-import Rooms from '../data/roomList';
+import Rooms from './data/roomList';
 
 const About = () => {
   let rooms = Rooms.map((room) => (

@@ -4,18 +4,22 @@ import { Route, NavLink, Redirect } from 'react-router-dom';
 import { Nav, Collapse, Navbar, NavbarBrand, NavItem, Tab, Row, Col } from 'react-bootstrap';
 
 //components
-import Available from './tabs/Available';
-import Payment from './tabs/Payment';
-import Confirmation from './tabs/Confirmation';
+import Available from './bookTabs/Available';
+import Payment from './bookTabs/Payment';
+import Confirmation from './bookTabs/Confirmation';
 
 
 //const Book = ({match}) => {
 class Book extends Component {
   static propTypes = {
-    selectDate: PropTypes.func.isRequired,
+    //selectDate: PropTypes.func.isRequired,
     selectRoom: PropTypes.func.isRequired,
     selectedRoom: PropTypes.object.isRequired
     //match: PropTypes.object.isRequired
+  }
+
+  componentDidUpdate() {
+
   }
 //console.log({this.props.selectedRoom});
   render(){
@@ -44,8 +48,8 @@ class Book extends Component {
 
           <Col sm={8}>
             <Route exact path="/book/" render={ () => <Redirect to="/book/availability" />} />
-            <Route path="/book/availability/" render={ () => (<Available selectDate={this.props.selectDate} selectRoom={this.props.selectRoom} selectedRoom={this.props.selectedRoom}/>) }/>
-            <Route path="/book/payment" render={ () => <Payment selectedRoom={this.props.selectedRoom}/> }/>
+            <Route path="/book/availability/" render={ () => (<Available selectRoom={this.props.selectRoom} selectedRoom={this.props.selectedRoom}/>) }/>
+            <Route path="/book/payment" render={ () => (this.props.selectedRoom.room) ? <Payment selectedRoom={this.props.selectedRoom}/> :  <Redirect to="/book/availability" />}/>
             <Route path="/book/confirmation" render={ () => <Confirmation /> }/>
           </Col>
         </Row>

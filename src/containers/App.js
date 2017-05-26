@@ -9,9 +9,9 @@ import * as CustomerActionCreators from '../actions/customer';
 
 //components
 import Header from '../routes/Header';
-import About from '../routes/about/About';
-import Book from '../routes/book/Book';
-import Home from '../routes/home/Home';
+import About from '../routes/About';
+import Book from '../routes/Book';
+import Home from '../routes/Home';
 import NotFound from '../routes/NotFound';
 
 
@@ -24,8 +24,8 @@ class App extends Component {
   render(){
     const{ dispatch, logged, selectedRoom } = this.props;
     const selectRoom = bindActionCreators(CustomerActionCreators.selectRoom, dispatch);
-    const selectDate = bindActionCreators(CustomerActionCreators.selectDate, dispatch);
-console.log(selectedRoom);
+    //const selectDate = bindActionCreators(CustomerActionCreators.selectDate, dispatch);
+console.log("selectedRoom state", selectedRoom);
     return (
 
       <BrowserRouter>
@@ -36,7 +36,6 @@ console.log(selectedRoom);
             <Route path="/about" component={About} />
             <Route path="/book" render={ () => (
               <Book
-                selectDate={selectDate}
                 selectRoom={selectRoom}
                 selectedRoom={selectedRoom}
               />) } />

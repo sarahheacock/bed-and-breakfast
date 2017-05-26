@@ -7,10 +7,10 @@ export const selectRoom = (room) => {
   }
 }
 
-export const selectDate = (come, go) => {
-  return {
-    type: CustomerActionTypes.SELECT_ROOM,
-    come,
-    go
-  }
-}
+// export const selectDate = (come, go) => {
+//   return {
+//     type: CustomerActionTypes.SELECT_ROOM,
+//     come,
+//     go
+//   }
+// }
