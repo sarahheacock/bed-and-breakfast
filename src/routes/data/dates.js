@@ -11,7 +11,7 @@ const now = Date.now();
 const Dates = [...new Array(365)].map((obj, i) => (
   {
     date: new Date(now + i*24*60*60*1000),
-    room1: true,
+    room1: false,
     room2: true,
     room3: true,
   }

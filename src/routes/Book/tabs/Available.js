@@ -25,7 +25,6 @@ class Available extends Component {
     this.setState({
       startDate: date,
     });
-    this.handleValid;
   }
 
   handleLeave(date) {
