@@ -1,11 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 //import { Navbar } from 'react-bootstrap';
 
-import { Nav, Collapse, Navbar, NavbarBrand, NavItem } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
-export default class Header extends React.Component {
-  render() {
+// export default class Header extends React.Component {
+//   render() {
+const Header = (props) => {
+  //console.log({match});
+  console.log(props.logged);
+    let corner = (props.logged.current) ?
+      <NavLink to={`/welcome/${props.logged.id}`}>{props.logged.id}</NavLink> :
+      <NavLink to="/login">Login</NavLink>;
+
     return (
       <div>
         <Navbar color="faded">
@@ -30,12 +38,19 @@ export default class Header extends React.Component {
             </Nav>
             <Nav pullRight>
               <NavItem eventKey={1}>
-                <NavLink to="/login">Login</NavLink>
+                {corner}
               </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>
     );
-  }
+  //}
 }
+
+export default Header;
+
+Header.propTypes = {
+  logged: PropTypes.object.isRequired
+}
+//<NavLink to={`${match.url}/login`}>Login</NavLink>

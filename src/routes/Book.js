@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Route, NavLink, Redirect } from 'react-router-dom';
-import { Nav, Collapse, Navbar, NavbarBrand, NavItem, Tab, Row, Col } from 'react-bootstrap';
+import { Nav, NavItem, Tab, Row, Col } from 'react-bootstrap';
 
 //components
 import Available from './bookTabs/Available';
@@ -14,7 +14,11 @@ class Book extends Component {
   static propTypes = {
     //selectDate: PropTypes.func.isRequired,
     selectRoom: PropTypes.func.isRequired,
-    selectedRoom: PropTypes.object.isRequired
+    selectedRoom: PropTypes.object.isRequired,
+    logged: PropTypes.object.isRequired,
+    modalVisible: PropTypes.bool.isRequired,
+    makeModal: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
     //match: PropTypes.object.isRequired
   }
 
@@ -49,8 +53,16 @@ class Book extends Component {
           <Col sm={8}>
             <Route exact path="/book/" render={ () => <Redirect to="/book/availability" />} />
             <Route path="/book/availability/" render={ () => (<Available selectRoom={this.props.selectRoom} selectedRoom={this.props.selectedRoom}/>) }/>
-            <Route path="/book/payment" render={ () => (this.props.selectedRoom.room) ? <Payment selectedRoom={this.props.selectedRoom}/> :  <Redirect to="/book/availability" />}/>
-            <Route path="/book/confirmation" render={ () => <Confirmation /> }/>
+            <Route path="/book/payment" render={ () => (this.props.selectedRoom.current) ?
+              <Payment
+                selectedRoom={this.props.selectedRoom}
+                login={this.props.login}
+                logged={this.props.logged}
+                modalVisible={this.props.modalVisible}
+                makeModal={this.props.makeModal}
+              /> :
+              <Redirect to="/book/availability" />}/>
+            <Route path="/book/confirmation" render={ () => (this.props.selectedRoom.current) ?  <Confirmation selectedRoom={this.props.selectedRoom} /> : <Redirect to="/book/availability" /> }/>
           </Col>
         </Row>
         </Tab.Container>

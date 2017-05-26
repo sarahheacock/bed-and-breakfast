@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import moment from 'moment';
+import Selected from './Selected';
+import Login from '../Login';
+import Welcome from '../Welcome';
 
 const Payment = (props) => {
-  const select = (props.selectedRoom.room) ? `${props.selectedRoom.room.name} ${props.selectedRoom.room.cost}` : "";
-  console.log(props.selectedRoom.depart);
+
+  // let next = (props.logged.current) ?
+  //   < :
+  //   <Login logged={props.logged} />
+  //console.log("sel", props.selectedRoom.current);
   return (
     <div>
       <h2>Payment</h2>
-      <div>
-        <p><b>Arrive:</b> {new Date(props.selectedRoom.arrive).toString()}</p>
-        <p><b>Depart:</b> {new Date(props.selectedRoom.depart).toString()}</p>
-        {select}
-      </div>
+      <Selected selectedRoom={props.selectedRoom}/>
+      <Login
+        login={props.login}
+        logged={props.logged}
+        modalVisible={props.modalVisible}
+        makeModal={props.makeModal}
+        selected={props.selectedRoom.current}
+      />
     </div>
   )
 
@@ -22,4 +30,8 @@ export default Payment;
 
 Payment.propTypes = {
   selectedRoom: PropTypes.object.isRequired,
+  logged: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+  modalVisible: PropTypes.bool.isRequired,
+  makeModal: PropTypes.func.isRequired
 }

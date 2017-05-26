@@ -7,6 +7,19 @@ export const selectRoom = (room) => {
   }
 }
 
+export const login = (info) => {
+  return {
+    type: CustomerActionTypes.LOGIN,
+    info,
+  }
+}
+
+export const makeModal = () => {
+  return {
+    type: CustomerActionTypes.MAKE_MODAL,
+  }
+}
+
 // export const selectDate = (come, go) => {
 //   return {
 //     type: CustomerActionTypes.SELECT_ROOM,

@@ -33,3 +33,7 @@ body {
 .select:hover {
   color: White;
 }
+
+.login-form {
+  max-width: 500px;
+}
