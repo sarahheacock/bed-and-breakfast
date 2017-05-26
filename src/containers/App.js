@@ -24,15 +24,22 @@ class App extends Component {
   render(){
     const{ dispatch, logged, selectedRoom } = this.props;
     const selectRoom = bindActionCreators(CustomerActionCreators.selectRoom, dispatch);
-
+    const selectDate = bindActionCreators(CustomerActionCreators.selectDate, dispatch);
+console.log(selectedRoom);
     return (
+
       <BrowserRouter>
         <div className="container-fluid">
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
-            <Route path="/book" component={Book} />
+            <Route path="/book" render={ () => (
+              <Book
+                selectDate={selectDate}
+                selectRoom={selectRoom}
+                selectedRoom={selectedRoom}
+              />) } />
             <Route component={NotFound} />
           </Switch>
         </div>

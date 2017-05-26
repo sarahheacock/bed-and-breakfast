@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import { Route, NavLink, Redirect } from 'react-router-dom';
 import { Nav, Collapse, Navbar, NavbarBrand, NavItem, Tab, Row, Col } from 'react-bootstrap';
 
@@ -8,10 +9,16 @@ import Payment from './tabs/Payment';
 import Confirmation from './tabs/Confirmation';
 
 
-const Book = ({match}) => {
-//class Book extends Component {
-
-  //render(){
+//const Book = ({match}) => {
+class Book extends Component {
+  static propTypes = {
+    selectDate: PropTypes.func.isRequired,
+    selectRoom: PropTypes.func.isRequired,
+    selectedRoom: PropTypes.object.isRequired
+    //match: PropTypes.object.isRequired
+  }
+//console.log({this.props.selectedRoom});
+  render(){
     return(
       <div className="main-content">
       <h1>Book Now</h1>
@@ -22,31 +29,30 @@ const Book = ({match}) => {
           <Nav bsStyle="pills" stacked>
 
             <NavItem className="tab">
-              <NavLink to={`${match.url}/availability`}>Availability</NavLink>
+              <NavLink to="/book/availability">Availability</NavLink>
             </NavItem>
 
             <NavItem className="tab">
-              <NavLink to={`${match.url}/payment`}>Payment</NavLink>
+              <NavLink to="/book/payment">Payment</NavLink>
             </NavItem>
 
             <NavItem className="tab">
-              <NavLink to={`${match.url}/confirmation`}>Confirmation</NavLink>
+              <NavLink to="/book/confirmation">Confirmation</NavLink>
             </NavItem>
           </Nav>
         </Col>
 
           <Col sm={8}>
-            <Route exact path={match.path} render={ () => <Redirect to={`${match.path}/availability`} />} />
-            <Route path={`${match.path}/availability`} render={ () => (<Available />) }/>
-            <Route path={`${match.path}/payment`} render={ () => <Payment /> }/>
-            <Route path={`${match.path}/confirmation`} render={ () => <Confirmation /> }/>
+            <Route exact path="/book/" render={ () => <Redirect to="/book/availability" />} />
+            <Route path="/book/availability/" render={ () => (<Available selectDate={this.props.selectDate} selectRoom={this.props.selectRoom} selectedRoom={this.props.selectedRoom}/>) }/>
+            <Route path="/book/payment" render={ () => <Payment selectedRoom={this.props.selectedRoom}/> }/>
+            <Route path="/book/confirmation" render={ () => <Confirmation /> }/>
           </Col>
         </Row>
         </Tab.Container>
       </div>
     );
-//  }
-
+  }
 }
 
 export default Book;

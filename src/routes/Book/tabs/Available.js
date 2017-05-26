@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -6,48 +7,71 @@ import AvailableList from '../AvailableList';
 import 'react-datepicker/dist/react-datepicker.css';
 
 class Available extends Component {
+  static propTypes = {
+    selectDate: PropTypes.func.isRequired,
+    selectRoom: PropTypes.func.isRequired,
+    selectedRoom: PropTypes.object.isRequired,
+  }
   // constructor(props) {
+  //   super(props);
   //   this.state = {
-  //     startDate: moment()
+  //     startDate: props.selectedRoom.arrive,
+  //     leaveDate: props.selectedRoom.depart,
   //   };
+  //   //this.handleStart = this.handleStart.bind(this);
+  //   // this.handleLeave = this.handleLeave.bind(this);
   // }
-  componentWillMount() {
-    this.setState({
-      startDate: moment(),
-      leaveDate: moment().add(1, 'day'),
-      valid: false
-    });
-    this.handleStart = this.handleStart.bind(this);
-    this.handleLeave = this.handleLeave.bind(this);
+
+  //componentDidUpdate(){
+  // changeDate = (date) => {
+  //   //if(date) date.preventDefault();
+  //   this.props.selectDate(this.state.startDate._d.getTime(), this.state.leaveDate._d.getTime());
+  // }
+
+  //handleStart(date) {
+  handleStart = (date) => {
+    //if(date) e.preventDefault();
+    //this.props.selectDate("arrive", date);
+    // this.setState({
+    //   leaveDate: date,
+    // });
+    //this.props.selectDate(this.state.startDate._d.getTime(), this.state.leaveDate._d.getTime());
+    //this.update();
+    this.props.selectDate(date._d.getTime(), this.props.selectedRoom.depart);
   }
 
-  handleStart(date) {
-    this.setState({
-      startDate: date,
-    });
+  //handleLeave(date) {
+  handleLeave = (date) => {
+    //if(e) e.preventDefault();
+    //this.props.selectDate("depart", date);
+    // this.setState({
+    //   leaveDate: date,
+    // });
+    console.log("date", date._d.getTime());
+    //console.log("props", this.props.selectedRoom.arrive);
+    this.props.selectDate(this.props.selectedRoom.arrive, date._d.getTime());
+    //this.update();
   }
-
-  handleLeave(date) {
-    this.setState({
-      leaveDate: date,
-    });
-  }
-
-
 
   render() {
     return (
       <div>
       <h2>Availability</h2>
       <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleStart}
+        selected={moment(this.props.selectedRoom.arrive)}
+        onSelect={this.handleStart}
+
       />
       <DatePicker
-        selected={this.state.leaveDate}
-        onChange={this.handleLeave}
+        selected={moment(this.props.selectedRoom.depart)}
+        onSelect={this.handleLeave}
+
       />
-      <AvailableList start={this.state.startDate._d.getTime()} leave={this.state.leaveDate._d.getTime()} />
+      <AvailableList
+        start={this.props.selectedRoom.arrive}
+        leave={this.props.selectedRoom.depart}
+        selectRoom={this.props.selectRoom}
+      />
       </div>
 
     );
