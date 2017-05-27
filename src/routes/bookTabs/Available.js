@@ -6,24 +6,31 @@ import moment from 'moment';
 import AvailableList from './AvailableList';
 import 'react-datepicker/dist/react-datepicker.css';
 
+//selects date from DatePicker and passes date to AvailableList
+//AvailableList determines what is actually available and calls updateRoom through click
 class Available extends Component {
   static propTypes = {
-    selectRoom: PropTypes.func.isRequired,
-    selectedRoom: PropTypes.object.isRequired,
+    updateRoom: PropTypes.func.isRequired,
+    room: PropTypes.object.isRequired,
+    // INITIAL ROOM STATE
+    // {
+    //   room: false,
+    //   name: '',
+    //   arrive: moment().toDate().getTime(),
+    //   depart: moment().add(1, 'day').toDate().getTime()
+    // }
   }
   constructor(props) {
     super(props);
     this.state = {
-      arrive: props.selectedRoom.arrive,
-      depart: props.selectedRoom.depart,
+      arrive: props.room.arrive,
+      depart: props.room.depart,
     };
-    // this.handleStart = this.handleStart.bind(this);
-    // this.handleLeave = this.handleLeave.bind(this);
   }
 
   handleStart = (date) => {
     this.setState({
-      arrive: date._d.getTime(),
+      arrive: date.toDate().getTime(),
     });
   }
 
@@ -32,9 +39,10 @@ class Available extends Component {
     this.setState({
       depart: date.toDate().getTime(),
     });
-    console.log("date", date.toDate());
   }
 
+//selected determined by moment(millisecond).
+//This millisecond was initialized in reducer to current date or moment().toDate().getTime()
   render() {
     return (
       <div>
@@ -48,9 +56,9 @@ class Available extends Component {
         onChange={this.handleLeave}
       />
       <AvailableList
-        start={this.state.arrive}
-        leave={this.state.depart}
-        selectRoom={this.props.selectRoom}
+        arrive={this.state.arrive}
+        depart={this.state.depart}
+        updateRoom={this.props.updateRoom}
       />
       </div>
 
@@ -59,12 +67,3 @@ class Available extends Component {
 }
 
 export default Available;
-
-// <DatePicker
-//   selected={moment(this.props.selectedRoom.arrive)}
-//   onSelect={this.handleStart}
-// />
-// <DatePicker
-//   selected={moment(this.props.selectedRoom.depart)}
-//   onChange={this.handleLeave}
-// />

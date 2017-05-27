@@ -20,50 +20,69 @@ import NotFound from '../routes/NotFound';
 
 class App extends Component {
   static propTypes = {
-    logged: PropTypes.object.isRequired,
-    selectedRoom: PropTypes.object.isRequired,
+    room: PropTypes.object.isRequired,
+    billing: PropTypes.object.isRequired,
+    login: PropTypes.object.isRequired,
+    credit: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired
   }
 
   render(){
-    const{ dispatch, logged, selectedRoom, modalVisible } = this.props;
-    const selectRoom = bindActionCreators(CustomerActionCreators.selectRoom, dispatch);
-    const login = bindActionCreators(CustomerActionCreators.login, dispatch);
+    const{ dispatch, room, billing, login, credit, modalVisible } = this.props;
+    const updateRoom = bindActionCreators(CustomerActionCreators.updateRoom, dispatch);
+    const updateBilling = bindActionCreators(CustomerActionCreators.updateBilling, dispatch);
+    const updateCredit = bindActionCreators(CustomerActionCreators.updateCredit, dispatch);
+    const updateLogin = bindActionCreators(CustomerActionCreators.updateLogin, dispatch);
     const makeModal = bindActionCreators(CustomerActionCreators.makeModal, dispatch);
     //const selectDate = bindActionCreators(CustomerActionCreators.selectDate, dispatch);
-    console.log("logged", logged);
-    console.log("room", selectedRoom);
-    return (
 
+    console.log("login", login);
+    console.log("billing", billing);
+    console.log("credit", credit);
+    console.log("room", room);
+    return (
       <BrowserRouter>
         <div className="container-fluid">
-          <Header logged={logged}/>
+          <Header
+            login={login}
+          />
+
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/book" render={ () => (
               <Book
-                selectRoom={selectRoom}
-                selectedRoom={selectedRoom}
-                logged={logged}
+                updateLogin={updateLogin}
                 login={login}
+                updateRoom={updateRoom}
+                room={room}
+                updateCredit={updateCredit}
+                credit={credit}
+                updateBilling={updateBilling}
+                billing={billing}
+
                 modalVisible={modalVisible}
                 makeModal={makeModal}
               />) }
             />
             <Route path="/login" render={ () => (
               <Login
+                updateLogin={updateLogin}
                 login={login}
-                logged={logged}
+                updateBilling={updateBilling}
+                billing={billing}
+
                 modalVisible={modalVisible}
                 makeModal={makeModal}
-                selected={selectedRoom.current}
+
+                roomRoom={room.room}
               />) }
             />
 
             <Route path="/welcome/:name" component={Welcome} />
             <Route component={NotFound} />
           </Switch>
+
         </div>
       </BrowserRouter>
     );
@@ -72,8 +91,10 @@ class App extends Component {
 
 const mapStateToProps = state => (
   {
-    logged: state.logged,
-    selectedRoom: state.selectedRoom,
+    room: state.room,
+    billing: state.billing,
+    login: state.login,
+    credit: state.credit,
     modalVisible: state.modalVisible
   }
 );

@@ -1,17 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-//import { Navbar } from 'react-bootstrap';
 
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
-// export default class Header extends React.Component {
-//   render() {
+//navigation bar
 const Header = (props) => {
-  //console.log({match});
-  console.log(props.logged);
-    let corner = (props.logged.current) ?
-      <NavLink to={`/welcome/${props.logged.id}`}>{props.logged.id}</NavLink> :
+
+  //if logged in or login.login = true, the corner link turns into route to personal page
+    let corner = (props.login.login) ?
+      <NavLink to={`/welcome/${props.login.id}`}>{props.login.id}</NavLink> :
       <NavLink to="/login">Login</NavLink>;
 
     return (
@@ -45,12 +43,10 @@ const Header = (props) => {
         </Navbar>
       </div>
     );
-  //}
 }
 
 export default Header;
 
 Header.propTypes = {
-  logged: PropTypes.object.isRequired
+  login: PropTypes.object.isRequired
 }
-//<NavLink to={`${match.url}/login`}>Login</NavLink>

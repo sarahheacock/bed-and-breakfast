@@ -1,16 +1,30 @@
 import * as CustomerActionTypes from '../actiontypes/customer';
 
-export const selectRoom = (room) => {
+export const updateRoom = (room) => {
   return {
-    type: CustomerActionTypes.SELECT_ROOM,
+    type: CustomerActionTypes.UPDATE_ROOM,
     room,
   }
 }
 
-export const login = (info) => {
+export const updateLogin = (login) => {
   return {
-    type: CustomerActionTypes.LOGIN,
-    info,
+    type: CustomerActionTypes.UPDATE_LOGIN,
+    login,
+  }
+}
+
+export const updateBilling = (billing) => {
+  return {
+    type: CustomerActionTypes.UPDATE_BILLING,
+    billing,
+  }
+}
+
+export const updateCredit = (credit) => {
+  return {
+    type: CustomerActionTypes.UPDATE_CREDIT,
+    credit,
   }
 }
 

@@ -2,24 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Selected from './Selected';
 import Login from '../Login';
-import Welcome from '../Welcome';
+//import Welcome from '../Welcome';
 
+//Payment provides a login --> login contains signup if needed
 const Payment = (props) => {
 
-  // let next = (props.logged.current) ?
-  //   < :
-  //   <Login logged={props.logged} />
-  //console.log("sel", props.selectedRoom.current);
   return (
     <div>
       <h2>Payment</h2>
-      <Selected selectedRoom={props.selectedRoom}/>
+      <Selected room={props.room}/>
       <Login
+        updateLogin={props.updateLogin}
         login={props.login}
-        logged={props.logged}
+        updateBilling={props.updateBilling}
+        billing={props.billing}
+
         modalVisible={props.modalVisible}
         makeModal={props.makeModal}
-        selected={props.selectedRoom.current}
+
+        roomRoom={props.room.room}
       />
     </div>
   )
@@ -29,9 +30,11 @@ const Payment = (props) => {
 export default Payment;
 
 Payment.propTypes = {
-  selectedRoom: PropTypes.object.isRequired,
-  logged: PropTypes.object.isRequired,
-  login: PropTypes.func.isRequired,
+  room: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
+  updateLogin: PropTypes.func.isRequired,
+  billing: PropTypes.object.isRequired,
+  updateBilling: PropTypes.func.isRequired,
   modalVisible: PropTypes.bool.isRequired,
   makeModal: PropTypes.func.isRequired
 }

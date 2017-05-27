@@ -1,27 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import SignUp from './SignUp';
-//import { browserHistory } from 'react-router';
+import SignUp from './modals/SignUp';
+import GeneralForm from './forms/GeneralForm';
 
-//const Login = () => (
+//Login updates login state and segueys to SignUp
+//which updates login and billing if requested
 class Login extends React.Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
-    logged: PropTypes.object.isRequired,
+    updateLogin: PropTypes.func.isRequired,
+    login: PropTypes.object.isRequired,
+    updateBilling: PropTypes.func.isRequired,
+    billing: PropTypes.object.isRequired,
+
     modalVisible: PropTypes.bool.isRequired,
     makeModal: PropTypes.func.isRequired,
-    selected: PropTypes.bool.isRequired
+    //determines if room has been selected
+    roomRoom: PropTypes.bool.isRequired,
+
   };
 
   constructor(props){
     super(props);
     this.state = {
-      current: props.logged.current,
-      email: props.logged.email,
-      id: props.logged.email,
-      password: props.logged.password,
-      vis: props.modalVisible
+      login: props.login.login,
+      email: props.login.email,
+      id: props.login.id,
+      password: props.login.password,
     }
   }
 
@@ -42,39 +47,27 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log("sel", this.props.selected);
-    const next = (this.props.selected) ? `/book/confirmation` : `/welcome/${this.state.id}`;
+    //determines if next route is welcome or confirmation
+    const next = (this.props.roomRoom) ? `/book/confirmation` : `/welcome/${this.state.id}`;
+
     return (
       <div className="main-content not-found">
         <h2>Login</h2>
-        <form className="login-form" onSubmit={this.customerLogin}>
-          <div className="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter"
-              value={this.state.email}
-              onChange={this.onEmailChange}
-            />
-          </div>
-          <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.onPasswordChange}
-            />
-          </div>
+        <form className="login-form">
+          <GeneralForm
+            emailValue={this.state.email}
+            emailChange={this.onEmailChange}
+            passwordValue={this.state.password}
+            passwordChange={this.onPasswordChange}
+          />
           <button type="submit" className="btn btn-primary">
             <NavLink className="select" to={next} onClick={() =>{
-              console.log("go");
-              this.props.login({email:this.state.email, id:this.state.id, password:this.state.password});
+              this.props.updateLogin({
+                login:true,
+                email:this.state.email,
+                id:this.state.id,
+                password:this.state.password,
+              });
             }}>
               Submit
             </NavLink>
@@ -83,16 +76,18 @@ class Login extends React.Component {
             Sign Up
           </button>
         </form>
-        <SignUp makeModal={this.props.makeModal} visible={this.props.modalVisible} logged={this.props.logged} login={this.props.login}/>
+        <SignUp
+          makeModal={this.props.makeModal}
+          modalVisible={this.props.modalVisible}
+          updateLogin={this.props.updateLogin}
+          updateBilling={this.props.updateBilling}
+          login={this.props.login}
+          billing={this.props.billing}
+        />
       </div>
     );
   }
 }
 
-//);
 
 export default Login;
-
-// <NavLink className="select" to={`/welcome/:${this.state.name}`}>
-//   SignUp
-// </NavLink>
