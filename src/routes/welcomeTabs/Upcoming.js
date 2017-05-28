@@ -1,10 +1,10 @@
 import React from 'react';
 import { PageHeader } from 'react-bootstrap';
 
-const Home = () => (
+const Upcoming = () => (
   <div className="main-content">
-    <PageHeader>Home</PageHeader>
+    <PageHeader><small>Upcoming Stays</small></PageHeader>
   </div>
 );
 
-export default Home;
+export default Upcoming;

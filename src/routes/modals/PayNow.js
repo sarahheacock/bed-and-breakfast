@@ -79,7 +79,7 @@ class PayNow extends React.Component {
             <Modal.Footer>
               <button type="submit" className="btn btn-primary" onClick={this.pop}>
                 <NavLink className="select" to="/book/confirmation" onClick={() => {
-                  this.props.updateCredit({...this.state});
+                  this.props.updateCredit({...this.state, credit:true});
                 }}>
                   Submit
                 </NavLink>

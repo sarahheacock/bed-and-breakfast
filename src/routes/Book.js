@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Route, NavLink, Redirect } from 'react-router-dom';
-import { Nav, NavItem, Tab, Row, Col } from 'react-bootstrap';
+import { Route, NavLink, Redirect, Link } from 'react-router-dom';
+import { Nav, NavItem, Tab, Row, Col, PageHeader } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 //components
 import Available from './bookTabs/Available';
@@ -14,26 +15,25 @@ import Confirmation from './bookTabs/Confirmation';
 const Book = (props) => {
   return (
     <div className="main-content">
-    <h1>Book Now</h1>
+    <PageHeader>Book Now</PageHeader>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row className="clearfix">
 
         <Col sm={4}>
           <Nav bsStyle="pills" stacked>
-            <NavItem className="tab">
-              <NavLink to="/book/availability">Availability</NavLink>
-            </NavItem>
-            <NavItem className="tab">
-              <NavLink to="/book/payment">Payment</NavLink>
-            </NavItem>
-            <NavItem className="tab">
-              <NavLink to="/book/confirmation">Confirmation</NavLink>
-            </NavItem>
+            <LinkContainer to="/book/availability">
+              <NavItem className="tab">Availability</NavItem>
+            </LinkContainer>
+            <LinkContainer to="/book/payment">
+              <NavItem className="tab">Payment</NavItem>
+            </LinkContainer>
+            <LinkContainer to="/book/confirmation">
+              <NavItem className="tab">Confirmation</NavItem>
+            </LinkContainer>
           </Nav>
         </Col>
 
         <Col sm={8}>
-
           <Route exact path="/book/" render={ () =>
             <Redirect to="/book/availability" /> }
           />
@@ -81,10 +81,10 @@ const Book = (props) => {
 export default Book;
 
 Book.propTypes = {
-  login: PropTypes.func.isRequired,
-  updateLogin: PropTypes.object.isRequired,
-  billing: PropTypes.func.isRequired,
-  updateBilling: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
+  updateLogin: PropTypes.func.isRequired,
+  billing: PropTypes.object.isRequired,
+  updateBilling: PropTypes.func.isRequired,
   credit: PropTypes.object.isRequired,
   updateCredit: PropTypes.func.isRequired,
   updateRoom: PropTypes.func.isRequired,

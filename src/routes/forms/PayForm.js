@@ -71,6 +71,8 @@ const PayForm = (props) => {
         >
           {monthOptions}
         </select>
+      </div>
+      <div className="form-group">
         <select className="exp"
           className="form-control"
           id="year"

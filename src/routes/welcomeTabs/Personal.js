@@ -1,10 +1,10 @@
 import React from 'react';
 import { PageHeader } from 'react-bootstrap';
 
-const Home = () => (
+const Personal = () => (
   <div className="main-content">
-    <PageHeader>Home</PageHeader>
+    <PageHeader><small>Personal Info</small></PageHeader>
   </div>
 );
 
-export default Home;
+export default Personal;

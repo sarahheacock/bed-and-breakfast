@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PageHeader } from 'react-bootstrap';
 import Selected from './Selected';
 import PayNow from '../modals/PayNow';
 
@@ -14,14 +15,20 @@ class Confirmation extends React.Component {
     makeModal: PropTypes.func.isRequired,
   }
 
-  componentWillMount(){
-    this.props.makeModal();
-  }
 
   render () {
+    const status = (this.props.credit.credit) ?
+      <button className="btn btn-success">
+        Confirmed
+      </button> :
+      <button className="btn btn-primary" onClick={() => (
+        this.props.makeModal()
+      )}>
+        Confirm Payment
+      </button>;
+
     return (
-      <div>
-        <h2>Confirmation</h2>
+      <div className="tab-content">
         <Selected
           room={this.props.room}
         />
@@ -31,6 +38,7 @@ class Confirmation extends React.Component {
           credit={this.props.credit}
           updateCredit={this.props.updateCredit}
         />
+        {status}
       </div>
     );
   }

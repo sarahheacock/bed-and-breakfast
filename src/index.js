@@ -7,9 +7,14 @@ import { createStore } from 'redux';
 import CustomerReducer from './reducers/customer';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
+
 import './index.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+
+
+
 
 const store = createStore(
   CustomerReducer,

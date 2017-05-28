@@ -5,7 +5,8 @@ const select = {
   room: false,
   name: '',
   arrive: moment().toDate().getTime(),
-  depart: moment().add(1, 'day').toDate().getTime()
+  depart: moment().add(1, 'day').toDate().getTime(),
+  guests: 1
 };
 
 const log = {

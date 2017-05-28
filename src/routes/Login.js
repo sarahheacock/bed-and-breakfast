@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { PageHeader } from 'react-bootstrap';
 import SignUp from './modals/SignUp';
 import GeneralForm from './forms/GeneralForm';
+//import { Button } from 'react-bootstrap';
 
 //Login updates login state and segueys to SignUp
 //which updates login and billing if requested
@@ -49,10 +51,22 @@ class Login extends React.Component {
   render() {
     //determines if next route is welcome or confirmation
     const next = (this.props.roomRoom) ? `/book/confirmation` : `/welcome/${this.state.id}`;
+    const secondButton = (this.props.login.login) ?
+      <button className="btn btn-secondary" onClick={() => this.props.updateLogin({
+        login: false,
+        email: '',
+        id: '',
+        password: '',
+      })}>
+        Logout
+      </button> :
+      <button className="btn btn-secondary" onClick={this.pop}>
+        Sign Up
+      </button>;
 
     return (
       <div className="main-content not-found">
-        <h2>Login</h2>
+        <PageHeader><small>Login</small></PageHeader>
         <form className="login-form">
           <GeneralForm
             emailValue={this.state.email}
@@ -60,6 +74,7 @@ class Login extends React.Component {
             passwordValue={this.state.password}
             passwordChange={this.onPasswordChange}
           />
+
           <button type="submit" className="btn btn-primary">
             <NavLink className="select" to={next} onClick={() =>{
               this.props.updateLogin({
@@ -72,9 +87,7 @@ class Login extends React.Component {
               Submit
             </NavLink>
           </button>
-          <button className="btn btn-secondary" onClick={this.pop}>
-            Sign Up
-          </button>
+          {secondButton}
         </form>
         <SignUp
           makeModal={this.props.makeModal}

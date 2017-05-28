@@ -7,9 +7,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CustomerActionCreators from '../actions/customer';
 
+import Rooms from '../routes/data/roomList';
+
 //components
 import Header from './Header';
 import About from '../routes/About';
+import AboutDetail from '../routes/AboutDetail';
 import Book from '../routes/Book';
 import Home from '../routes/Home';
 import Login from '../routes/Login';
@@ -40,6 +43,16 @@ class App extends Component {
     console.log("billing", billing);
     console.log("credit", credit);
     console.log("room", room);
+
+    const roomRoutes = Rooms.map((room) => (
+      <Route key={`route${room.name}`} path={`/about/${room.name}`} render={() => (
+        <AboutDetail
+          room={room}
+        />
+      )}
+      />
+    ));
+
     return (
       <BrowserRouter>
         <div className="container-fluid">
@@ -49,7 +62,8 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
+            <Route exact path="/about" component={About} />
+            {roomRoutes}
             <Route path="/book" render={ () => (
               <Book
                 updateLogin={updateLogin}
@@ -79,7 +93,14 @@ class App extends Component {
               />) }
             />
 
-            <Route path="/welcome/:name" component={Welcome} />
+            <Route path="/welcome/:name" render={ () => (
+              <Welcome
+                login={login}
+                billing={billing}
+                room={room}
+              />
+            )} />
+
             <Route component={NotFound} />
           </Switch>
 
