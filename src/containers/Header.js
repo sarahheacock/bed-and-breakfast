@@ -14,7 +14,7 @@ const Header = (props) => {
 
     return (
       <div>
-        <Navbar color="faded">
+        <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
               {"B&B"}

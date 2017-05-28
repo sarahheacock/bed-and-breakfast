@@ -1,7 +1,21 @@
 .detail-img {
   width: 100%;
-  padding: 2%; }
+  padding: 2%;
+  border-radius: 1%;
+  margin-bottom: 5%;
+}
 
+.detail {
+  max-width: 700px;
+}
 
-  .detail {
-    max-width: 700px; }
+.content-center {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.description {
+  width: 90%;
+  margin: 0 auto;
+  color: DimGray;
+}

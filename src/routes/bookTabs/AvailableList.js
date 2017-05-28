@@ -43,7 +43,7 @@ const AvailableList = (props) => {
       return(
         <div key={`available${i}`}>
           {(!lookup) ? "" :
-          <div className="well text-center">
+          <div className="well text-center well-option">
             <img className="room-img round" src={room.image} alt={room.name} />
             <h3>{room.name}</h3>
             <p>{room.cost}</p>

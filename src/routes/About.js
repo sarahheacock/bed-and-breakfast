@@ -10,8 +10,8 @@ const About = () => {
     <NavLink className="about" id={room.name} key={room.name} to={`/about/${room.name}`}>
       <div className="well room">
         <img className="room-img" src={room.image} alt={room.name} />
-        <h3>{room.name}</h3>
-        <p>{room.cost}</p>
+        <h3 className="text-center" >{room.name}</h3>
+        <p className="text-center" >{room.cost}</p>
       </div>
     </NavLink>
   ));

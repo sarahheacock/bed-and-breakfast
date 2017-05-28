@@ -7,8 +7,15 @@
   align-content: center;
   height: auto; }
 
-  .about:hover {
-    text-decoration: none; }
+.about:hover {
+  text-decoration: none;
+  box-shadow: 10px 10px 5px #888888;
+}
 
-  .about {
-    margin: 2%; }
+.about {
+  margin: 2%;
+}
+
+.room {
+  height: 350px;
+}
