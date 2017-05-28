@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, NavLink, Redirect, Link } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { Nav, NavItem, Tab, Row, Col, PageHeader } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+
+import '../stylesheets/book.css';
 
 //components
 import Available from './bookTabs/Available';
@@ -16,6 +18,7 @@ const Book = (props) => {
   return (
     <div className="main-content">
     <PageHeader>Book Now</PageHeader>
+    <div className="text-center">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row className="clearfix">
 
@@ -71,6 +74,7 @@ const Book = (props) => {
         </Col>
       </Row>
       </Tab.Container>
+      </div>
     </div>
   );
 };

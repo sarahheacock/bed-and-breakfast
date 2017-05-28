@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PageHeader } from 'react-bootstrap';
 import Selected from './Selected';
 import PayNow from '../modals/PayNow';
 

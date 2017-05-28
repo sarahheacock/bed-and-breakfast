@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PageHeader } from 'react-bootstrap';
-import '../index.css';
+
+import '../stylesheets/aboutDetail.css';
 
 const AboutDetail = (props) => {
 

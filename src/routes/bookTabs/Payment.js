@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Selected from './Selected';
 import Login from '../Login';
-import { PageHeader } from 'react-bootstrap';
-//import Welcome from '../Welcome';
 
 //Payment provides a login --> login contains signup if needed
 const Payment = (props) => {

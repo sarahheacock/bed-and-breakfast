@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+
 //redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -121,10 +122,3 @@ const mapStateToProps = state => (
 );
 
 export default connect(mapStateToProps)(App);
-
-// <Route path="/signup" render={ () => (
-//   <SignUp
-//     login={login}
-//     logged={logged}
-//   />) }
-// />

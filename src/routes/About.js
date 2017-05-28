@@ -3,6 +3,8 @@ import Rooms from './data/roomList';
 import { NavLink } from 'react-router-dom';
 import { PageHeader } from 'react-bootstrap';
 
+import '../stylesheets/about.css';
+
 const About = () => {
   const rooms = Rooms.map((room) => (
     <NavLink className="about" id={room.name} key={room.name} to={`/about/${room.name}`}>

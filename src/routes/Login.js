@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { PageHeader } from 'react-bootstrap';
 import SignUp from './modals/SignUp';
 import GeneralForm from './forms/GeneralForm';
-//import { Button } from 'react-bootstrap';
+
+import '../stylesheets/login.css';
 
 //Login updates login state and segueys to SignUp
 //which updates login and billing if requested

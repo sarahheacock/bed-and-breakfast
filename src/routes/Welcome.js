@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, NavLink, Redirect, Link } from 'react-router-dom';
+import { Route, Redirect} from 'react-router-dom';
 import { Nav, NavItem, Tab, Row, Col, PageHeader } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import Upcoming from './welcomeTabs/Upcoming';
 import Personal from './welcomeTabs/Personal';
-//import NotFound from './NotFound';
 
 //an Api will be needed to pull out current stuff
 const Welcome = (props) => {

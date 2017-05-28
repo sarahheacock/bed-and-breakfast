@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
@@ -15,10 +14,10 @@ const Header = (props) => {
 
     return (
       <div>
-        <Navbar color="faded" light>
+        <Navbar color="faded">
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">{"B&B"}</a>
+              {"B&B"}
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

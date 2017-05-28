@@ -1,0 +1,22 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  text-align: center; }
+
+/*fixes NavLink buttons*/
+.select {
+  color: White; }
+
+.select:hover {
+  color: White;
+  text-decoration: none;
+}
+
+ /*styling for Book and Welcome */
+.tab-content {
+  max-width: 500px;
+  text-align: center; }

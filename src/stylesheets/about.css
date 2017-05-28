@@ -1,0 +1,14 @@
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  height: auto; }
+
+  .about:hover {
+    text-decoration: none; }
+
+  .about {
+    margin: 2%; }
