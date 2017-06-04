@@ -9,6 +9,7 @@ class Confirmation extends React.Component {
   static propTypes = {
     room: PropTypes.object.isRequired,
     updateCredit: PropTypes.func.isRequired,
+    postSearch: PropTypes.func.isRequired,
     credit: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired,
     makeModal: PropTypes.func.isRequired,
@@ -36,6 +37,8 @@ class Confirmation extends React.Component {
           modalVisible={this.props.modalVisible}
           credit={this.props.credit}
           updateCredit={this.props.updateCredit}
+          postSearch={this.props.postSearch}
+          room={this.props.room}
         />
         {status}
       </div>

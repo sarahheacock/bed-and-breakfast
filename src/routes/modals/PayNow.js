@@ -21,9 +21,11 @@ import PayForm from '../forms/PayForm';
 class PayNow extends React.Component {
   static propTypes = {
     updateCredit: PropTypes.func.isRequired,
+    postSearch: PropTypes.func.isRequired,
     credit: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired,
-    makeModal: PropTypes.func.isRequired
+    makeModal: PropTypes.func.isRequired,
+    room: PropTypes.object.isRequired
   };
 
   constructor(props){
@@ -80,6 +82,7 @@ class PayNow extends React.Component {
               <button type="submit" className="btn btn-primary" onClick={this.pop}>
                 <NavLink className="select" to="/book/confirmation" onClick={() => {
                   this.props.updateCredit({...this.state, credit:true});
+                  //this.props.postSearch(this.props.room.arrive, this.props.room.depart, this.props.room.room.name);
                 }}>
                   Submit
                 </NavLink>

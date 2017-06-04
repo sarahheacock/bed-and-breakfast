@@ -10,10 +10,10 @@ import PersonalInfoForm from '../forms/PersonalInfoForm';
 //SignUp is a modal that update login and billing state
 class SignUp extends React.Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
-    updateLogin: PropTypes.object.isRequired,
-    billing: PropTypes.func.isRequired,
-    updateBilling: PropTypes.object.isRequired,
+    login: PropTypes.object.isRequired,
+    updateLogin: PropTypes.func.isRequired,
+    billing: PropTypes.object.isRequired,
+    updateBilling: PropTypes.func.isRequired,
     makeModal: PropTypes.func.isRequired,
     modalVisible: PropTypes.bool.isRequired
   };

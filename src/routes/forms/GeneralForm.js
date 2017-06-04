@@ -5,7 +5,7 @@ const GeneralForm = (props) => {
   return (
     <div>
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label>Email address</label>
           <input
             type="email"
             className="form-control"
@@ -17,7 +17,7 @@ const GeneralForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label>Password</label>
           <input
             type="password"
             className="form-control"

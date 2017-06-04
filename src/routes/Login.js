@@ -85,7 +85,7 @@ class Login extends React.Component {
                 password:this.state.password,
               });
             }}>
-              Submit
+              Login
             </NavLink>
           </button>
           {secondButton}

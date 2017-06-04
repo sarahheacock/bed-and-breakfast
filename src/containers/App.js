@@ -28,22 +28,30 @@ class App extends Component {
     billing: PropTypes.object.isRequired,
     login: PropTypes.object.isRequired,
     credit: PropTypes.object.isRequired,
-    modalVisible: PropTypes.bool.isRequired
+    modalVisible: PropTypes.bool.isRequired,
+    searchResults: PropTypes.array.isRequired
   }
 
   render(){
-    const{ dispatch, room, billing, login, credit, modalVisible } = this.props;
+    const{ dispatch, room, billing, login, credit, modalVisible, searchResults } = this.props;
+    //turns an object whose values are action creators (functions)
+    //and wraps in dispatch (what causes state change)
     const updateRoom = bindActionCreators(CustomerActionCreators.updateRoom, dispatch);
     const updateBilling = bindActionCreators(CustomerActionCreators.updateBilling, dispatch);
     const updateCredit = bindActionCreators(CustomerActionCreators.updateCredit, dispatch);
     const updateLogin = bindActionCreators(CustomerActionCreators.updateLogin, dispatch);
     const makeModal = bindActionCreators(CustomerActionCreators.makeModal, dispatch);
+    //const fetchSearchSuccess = bindActionCreators(CustomerActionCreators.fetchSearchSuccess, dispatch);
+    const fetchSearch = bindActionCreators(CustomerActionCreators.fetchSearch, dispatch);
+    const postSearch = bindActionCreators(CustomerActionCreators.postSearch, dispatch);
+
     //const selectDate = bindActionCreators(CustomerActionCreators.selectDate, dispatch);
 
     console.log("login", login);
     console.log("billing", billing);
     console.log("credit", credit);
     console.log("room", room);
+    console.log("searchResults", searchResults);
 
     const roomRoutes = Rooms.map((room) => (
       <Route key={`route${room.name}`} path={`/about/${room.name}`} render={() => (
@@ -76,6 +84,10 @@ class App extends Component {
                 updateBilling={updateBilling}
                 billing={billing}
 
+                fetchSearch={fetchSearch}
+                postSearch={postSearch}
+                searchResults={searchResults}
+
                 modalVisible={modalVisible}
                 makeModal={makeModal}
               />) }
@@ -86,6 +98,7 @@ class App extends Component {
                 login={login}
                 updateBilling={updateBilling}
                 billing={billing}
+
 
                 modalVisible={modalVisible}
                 makeModal={makeModal}
@@ -117,8 +130,12 @@ const mapStateToProps = state => (
     billing: state.billing,
     login: state.login,
     credit: state.credit,
-    modalVisible: state.modalVisible
+    modalVisible: state.modalVisible,
+    searchResults: state.searchResults
   }
 );
+
+
+//mapDispatchToProps(dispatch, [ownProps]): dispatchProps
 
 export default connect(mapStateToProps)(App);

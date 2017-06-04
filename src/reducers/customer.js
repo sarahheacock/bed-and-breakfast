@@ -1,43 +1,10 @@
 import * as CustomerActionTypes from '../actiontypes/customer';
 import moment from 'moment';
 
-const select = {
-  room: false,
-  name: '',
-  arrive: moment().toDate().getTime(),
-  depart: moment().add(1, 'day').toDate().getTime(),
-  guests: 1
-};
 
-const log = {
-  login: false,
-  email: '',
-  id: '',
-  password: '',
-};
-
-const bill = {
-  billing: false,
-  line1: '',
-  line2: '',
-  city: '',
-  state: '',
-  zip: '',
-  country: 'United States'
-};
-
-const c = {
-  credit: false,
-  number: '',
-  expiration: {
-    month: '',
-    year: '',
-  },
-  cvv: '',
-  name: '',
-};
-
-export default function Customer(state={room:select, billing:bill, modalVisible:false, login:log, credit:c}, action){
+//==============================================================
+//state={} is overwritten by initialState provided in index.js
+export default function Customer(state={}, action){
   switch (action.type) {
 
     case CustomerActionTypes.UPDATE_ROOM: {
@@ -74,6 +41,22 @@ export default function Customer(state={room:select, billing:bill, modalVisible:
         modalVisible: !(state.modalVisible)
       }
     }
+
+    case CustomerActionTypes.FETCH_SEARCH_SUCCESS: {
+      return {
+        ...state,
+        searchResults: action.results
+      }
+    }
+
+    case CustomerActionTypes.POST_SEARCH_SUCCESS: {
+      return {
+        ...state,
+        //CHANGE LATER
+        searchResults: action.results
+      }
+    }
+
 
     default:
       return state;

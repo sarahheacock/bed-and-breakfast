@@ -15,7 +15,7 @@ const Rooms = [
   },
   {
     "room": "room3",
-    "name": "Lily Pond",
+    "name": "Lily",
     "cost": "$249-259",
     "image": "https://www.atwoodlake.com/wp-content/uploads/2016/08/WhisperingPines-Rooms-LilyPond-1-1-768x512.jpg",
     "description": "Escape to the Lily Pond room during your stay at Atwood Lake. Decorated with warm colors, beautiful art, and designer furnishings, the Lily Pond room is an inviting home away from home. Inside the guest room and on your private balcony, you can experience a spectacular view of Atwood Lake, featuring expansive views of the gardens below. There really isn’t a view quite like what you’ll see from your balcony in the Lily Pond Room. In fact, you may have a hard time returning to reality with the views of the lake, the gardens and pond. An electric fireplace will provide a warm glow all year round, and the huge antique walnut queen-size bed is stunning. The custom bathroom was designed with vibrant colors and a 2-person whirlpool tub. Enhance your romantic getaway by adding a soothing massage or a beautiful vase of fresh flowers.Two night minimum on all weekends including Memorial Day, July 4th, Labor Day and all weekends in October.",

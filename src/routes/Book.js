@@ -44,6 +44,8 @@ const Book = (props) => {
             <Available
               room={props.room}
               updateRoom={props.updateRoom}
+              searchResults={props.searchResults}
+              fetchSearch={props.fetchSearch}
             /> }
           />
 
@@ -65,6 +67,7 @@ const Book = (props) => {
               room={props.room}
               credit={props.credit}
               updateCredit={props.updateCredit}
+              postSearch={props.postSearch}
               modalVisible={props.modalVisible}
               makeModal={props.makeModal}
             /> :
@@ -93,6 +96,10 @@ Book.propTypes = {
   updateCredit: PropTypes.func.isRequired,
   updateRoom: PropTypes.func.isRequired,
   room: PropTypes.object.isRequired,
+
+  searchResults: PropTypes.array.isRequired,
+  fetchSearch: PropTypes.func.isRequired,
+  postSearch: PropTypes.func.isRequired,
 
   makeModal: PropTypes.func.isRequired,
   modalVisible: PropTypes.bool.isRequired,
