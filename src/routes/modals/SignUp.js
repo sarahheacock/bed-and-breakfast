@@ -11,9 +11,7 @@ import PersonalInfoForm from '../forms/PersonalInfoForm';
 class SignUp extends React.Component {
   static propTypes = {
     login: PropTypes.object.isRequired,
-    updateLogin: PropTypes.func.isRequired,
-    billing: PropTypes.object.isRequired,
-    updateBilling: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
     makeModal: PropTypes.func.isRequired,
     modalVisible: PropTypes.bool.isRequired
   };
@@ -21,16 +19,21 @@ class SignUp extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      email: props.login.email,
-      id: props.login.id,
-      password: props.login.password,
-      billing: props.billing,
+      email: props.login.user.email,
+      password: props.login.user.password,
+      billing: {
+        line1: '',
+        line2: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: ''
+      },
     }
   }
 
   onEmailChange = (e) => {
     this.state.email = e.target.value;
-    this.state.id = e.target.value.slice(0, e.target.value.indexOf('@'))
     this.setState(this.state);
   }
 
@@ -78,15 +81,10 @@ class SignUp extends React.Component {
             <Modal.Footer>
               <button type="submit" className="btn btn-primary" onClick={this.pop}>
                 <NavLink className="select" to="/book/confirmation" onClick={() => {
-                  this.props.updateLogin({
-                    login: true,
+                  this.props.updateUser({
                     password: this.state.password,
                     email: this.state.email,
-                    id: this.state.id
-                  });
-                  this.props.updateBilling({
-                    ...this.state.billing,
-                    billing: true
+                    billing: `${this.state.billing.line1} ${this.state.billing.line2}, ${this.state.billing.city}, ${this.state.billing.state} ${this.state.billing.zip} ${this.state.billing.country}`
                   });
                 }}>
                   Submit

@@ -31,6 +31,7 @@ const PayForm = (props) => {
   const monthOptions = Months.map((month) => (
     <option
     value={month}
+    key={month}
     >
       {month}
     </option>
@@ -39,6 +40,7 @@ const PayForm = (props) => {
   const yearOptions = Years.map((year) => (
     <option
     value={year}
+    key={year}
     >
       {year}
     </option>

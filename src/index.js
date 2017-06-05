@@ -30,31 +30,9 @@ const select = {
 
 const log = {
   login: false,
-  email: '',
-  id: '',
-  password: '',
+  user: {}
 };
 
-const bill = {
-  billing: false,
-  line1: '',
-  line2: '',
-  city: '',
-  state: '',
-  zip: '',
-  country: 'United States'
-};
-
-const c = {
-  credit: false,
-  number: '',
-  expiration: {
-    month: '',
-    year: '',
-  },
-  cvv: '',
-  name: '',
-};
 
 
 //=======================================================================
@@ -67,10 +45,8 @@ axios.get(`https://fathomless-meadow-60353.herokuapp.com/hotel/${select.arrive}`
   if(results.length === 1) {
     const initialState = {
       room:select,
-      billing:bill,
       modalVisible:false,
       login:log,
-      credit:c,
       searchResults:results
     };
 

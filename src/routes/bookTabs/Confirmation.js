@@ -8,20 +8,20 @@ import PayNow from '../modals/PayNow';
 class Confirmation extends React.Component {
   static propTypes = {
     room: PropTypes.object.isRequired,
-    updateCredit: PropTypes.func.isRequired,
-    postSearch: PropTypes.func.isRequired,
-    credit: PropTypes.object.isRequired,
+    login: PropTypes.object.isRequired,
+    chargeClient: PropTypes.func.isRequired,
+
     modalVisible: PropTypes.bool.isRequired,
     makeModal: PropTypes.func.isRequired,
   }
 
 
   render () {
-    const status = (this.props.credit.credit) ?
-      <button className="btn btn-success">
-        Confirmed
-      </button> :
-      <button className="btn btn-primary" onClick={() => (
+    // (this.props.credit.credit) ?
+    //   <button className="btn btn-success">
+    //     Confirmed
+    //   </button> :
+    const status = <button className="btn btn-primary" onClick={() => (
         this.props.makeModal()
       )}>
         Confirm Payment
@@ -35,10 +35,10 @@ class Confirmation extends React.Component {
         <PayNow
           makeModal={this.props.makeModal}
           modalVisible={this.props.modalVisible}
-          credit={this.props.credit}
-          updateCredit={this.props.updateCredit}
-          postSearch={this.props.postSearch}
+
+          chargeClient={this.props.chargeClient}
           room={this.props.room}
+          login={this.props.login}
         />
         {status}
       </div>

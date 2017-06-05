@@ -6,10 +6,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 //navigation bar
 const Header = (props) => {
-
+  const id = (props.login.user.email !== undefined) ? props.login.user.email.split("@") : [];
+  const ID = id[0];
   //if logged in or login.login = true, the corner link turns into route to personal page
     let corner = (props.login.login) ?
-      <LinkContainer to={`/welcome/${props.login.id}`}><NavItem>{props.login.id}</NavItem></LinkContainer> :
+      <LinkContainer to={`/welcome/${ID}`}><NavItem>{ID}</NavItem></LinkContainer> :
       <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>;
 
     return (

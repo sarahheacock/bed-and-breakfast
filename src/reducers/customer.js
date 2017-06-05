@@ -1,11 +1,19 @@
 import * as CustomerActionTypes from '../actiontypes/customer';
 import moment from 'moment';
 
+const temp = new Date().toString().split(' ');
+const NOW = new Date(temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3] + " 10:00:00").getTime();
 
 //==============================================================
 //state={} is overwritten by initialState provided in index.js
 export default function Customer(state={}, action){
   switch (action.type) {
+    case CustomerActionTypes.MAKE_MODAL: {
+      return {
+        ...state,
+        modalVisible: !(state.modalVisible)
+      }
+    }
 
     case CustomerActionTypes.UPDATE_ROOM: {
       return {
@@ -14,31 +22,14 @@ export default function Customer(state={}, action){
       }
     }
 
-    case CustomerActionTypes.UPDATE_LOGIN: {
+    case CustomerActionTypes.LOGOUT: {
+      const newLogin = {
+        login: false,
+        user: {}
+      };
       return {
         ...state,
-        login: action.login
-      }
-    }
-
-    case CustomerActionTypes.UPDATE_BILLING: {
-      return {
-        ...state,
-        billing: action.billing
-      }
-    }
-
-    case CustomerActionTypes.UPDATE_CREDIT: {
-      return {
-        ...state,
-        credit: action.credit
-      }
-    }
-
-    case CustomerActionTypes.MAKE_MODAL: {
-      return {
-        ...state,
-        modalVisible: !(state.modalVisible)
+        login: newLogin
       }
     }
 
@@ -49,13 +40,69 @@ export default function Customer(state={}, action){
       }
     }
 
-    case CustomerActionTypes.POST_SEARCH_SUCCESS: {
+    case CustomerActionTypes.UPDATE_UPCOMING_SUCCESS: {
+      const newLogin = {
+        login: true,
+        user: action.data
+      };
+      const newRoom = {
+        room: false,
+        name: {},
+        arrive: NOW,
+        depart: NOW + 24*60*60*1000,
+      }
       return {
         ...state,
-        //CHANGE LATER
-        searchResults: action.results
+        login: newLogin,
+        room: newRoom,
       }
     }
+
+    case CustomerActionTypes.USER_SUCCESS: {
+      const newLogin = {
+        login: true,
+        user: action.data
+      };
+      console.log(newLogin);
+      return {
+        ...state,
+        login: newLogin
+      }
+    }
+
+    // case CustomerActionTypes.UPDATE_LOGIN_SUCCESS: {
+    //
+    //   return {
+    //     ...state,
+    //     login: action.login
+    //   }
+    // }
+    //
+    // case CustomerActionTypes.UPDATE_BILLING: {
+    //   return {
+    //     ...state,
+    //     billing: action.billing
+    //   }
+    // }
+    //
+    // case CustomerActionTypes.UPDATE_CREDIT: {
+    //   return {
+    //     ...state,
+    //     credit: action.credit
+    //   }
+    // }
+
+
+
+
+
+    // case CustomerActionTypes.POST_SEARCH_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     //CHANGE LATER
+    //     searchResults: action.results
+    //   }
+    // }
 
 
     default:

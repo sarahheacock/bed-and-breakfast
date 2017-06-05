@@ -9,89 +9,6 @@ import AvailableList from './AvailableList';
 
 //selects date from DatePicker and passes date to AvailableList
 //AvailableList determines what is actually available and calls updateRoom through click
-// const Available = (props) => {
-//   const guestOptions = [...new Array(6)].map((ob, i) => (
-//     <option value={i} key={`guest${i}`}>
-//       {i + 1}
-//     </option>
-//   ));
-//
-//   return (
-//     <div className="tab-content text-center">
-//       <form className="room-form" >
-//         <FormGroup>
-//           <Row className="clearfix text-center">
-//             <Col sm={4}>
-//               <ControlLabel>Number of Guests</ControlLabel><br />
-//             </Col>
-//             <Col sm={4}>
-//               <select
-//                 className="form-control guest-num"
-//                 id="guest-num"
-//                 onChange={(e) => }
-//                 value={props.room.guests}
-//               >
-//                 {guestOptions}
-//               </select>
-//             </Col>
-//             </Row>
-//         </FormGroup>
-//
-//         <FormGroup>
-//           <Row className="clearfix text-center">
-//             <Col sm={4}>
-//               <ControlLabel>Arrival</ControlLabel>
-//             </Col>
-//             <Col sm={4}>
-//               <DatePicker
-//                 id="arrivalPicker"
-//                 className="form-control date pull-left"
-//                 selected={moment(this.state.arrive)}
-//                 onChange={this.handleStart}
-//                 minDate={moment()}
-//                 maxDate={moment().add(365, "days")}
-//               />
-//             </Col>
-//           </Row>
-//         </FormGroup>
-//
-//         <FormGroup>
-//           <Row>
-//             <Col sm={4}>
-//               <ControlLabel>Departure</ControlLabel>
-//             </Col>
-//             <Col sm={4}>
-//               <DatePicker
-//                 id="departPicker"
-//                 className="form-control date pull-right"
-//                 selected={moment(this.state.depart)}
-//                 onChange={this.handleLeave}
-//                 minDate={moment()}
-//                 maxDate={moment().add(365, "days")}
-//               />
-//             </Col>
-//           </Row>
-//         </FormGroup>
-//       </form>
-//
-//       <AvailableList
-//         arrive={this.state.arrive}
-//         depart={this.state.depart}
-//         updateRoom={this.props.updateRoom}
-//       />
-//     </div>
-//
-//   );
-// }
-//
-// export default Available;
-//
-// Available.propTypes = {
-//   room: propTypes.object.isRequired,
-//   updateRoom: propTypes.func.isRequired,
-//   searchResults: PropTypes.Array.isRequired,
-//   fetchSearch: PropTypes.func.isRequired,
-// }
 
 class Available extends Component {
   static propTypes = {
@@ -102,7 +19,7 @@ class Available extends Component {
     // INITIAL ROOM STATE
     // {
     //   room: false,
-    //   name: '',
+    //   name: {},
     //   arrive: moment().toDate().getTime(),
     //   depart: moment().add(1, 'day').toDate().getTime()
     // }

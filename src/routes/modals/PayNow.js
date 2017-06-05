@@ -5,24 +5,12 @@ import { Modal } from 'react-bootstrap';
 
 import PayForm from '../forms/PayForm';
 
-//PayNow updates credit state
-//INITIAL credit state
-// {
-//   credit: false,
-//   number: '',
-//   expiration: {
-//     month: '',
-//     year: '',
-//   },
-//   cvv: '',
-//   name: '',
-// }
+//PayNow
 
 class PayNow extends React.Component {
   static propTypes = {
-    updateCredit: PropTypes.func.isRequired,
-    postSearch: PropTypes.func.isRequired,
-    credit: PropTypes.object.isRequired,
+    chargeClient: PropTypes.func.isRequired,
+    login: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired,
     makeModal: PropTypes.func.isRequired,
     room: PropTypes.object.isRequired
@@ -31,11 +19,14 @@ class PayNow extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name: props.credit.name,
-      credit: props.credit.credit,
-      number: props.credit.number,
-      expiration: props.credit.expiration,
-      cvv: props.credit.cvv,
+      name: '',
+      credit: '',
+      number: '',
+      expiration: {
+        month: '',
+        year: '',
+      },
+      cvv: '',
     }
   }
 
@@ -81,8 +72,7 @@ class PayNow extends React.Component {
             <Modal.Footer>
               <button type="submit" className="btn btn-primary" onClick={this.pop}>
                 <NavLink className="select" to="/book/confirmation" onClick={() => {
-                  this.props.updateCredit({...this.state, credit:true});
-                  //this.props.postSearch(this.props.room.arrive, this.props.room.depart, this.props.room.room.name);
+                  this.props.chargeClient({credit:this.state, room:this.props.room, login:this.props.login.user});
                 }}>
                   Submit
                 </NavLink>

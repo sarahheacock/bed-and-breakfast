@@ -6,6 +6,7 @@ import TextInput from './TextInput';
 const PersonalInfoForm = (props) => {
   const options = Countries.map((country) => (
     <option
+    key={country}
     value={country}
     >
       {country}

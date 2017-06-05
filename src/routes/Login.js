@@ -11,31 +11,27 @@ import '../stylesheets/login.css';
 //which updates login and billing if requested
 class Login extends React.Component {
   static propTypes = {
-    updateLogin: PropTypes.func.isRequired,
+    room: PropTypes.object.isRequired,
     login: PropTypes.object.isRequired,
-    updateBilling: PropTypes.func.isRequired,
-    billing: PropTypes.object.isRequired,
+    fetchUser: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
 
     modalVisible: PropTypes.bool.isRequired,
-    makeModal: PropTypes.func.isRequired,
-    //determines if room has been selected
-    roomRoom: PropTypes.bool.isRequired,
-
+    makeModal: PropTypes.func.isRequired
   };
 
   constructor(props){
     super(props);
     this.state = {
-      login: props.login.login,
-      email: props.login.email,
-      id: props.login.id,
-      password: props.login.password,
+      email: props.login.user.email,
+      password: props.login.user.password,
     }
   }
 
   onEmailChange = (e) => {
     this.state.email = e.target.value;
-    this.state.id = e.target.value.slice(0, e.target.value.indexOf('@'))
+    //this.state.id = e.target.value.slice(0, e.target.value.indexOf('@'))
     this.setState(this.state);
   }
 
@@ -51,13 +47,14 @@ class Login extends React.Component {
 
   render() {
     //determines if next route is welcome or confirmation
-    const next = (this.props.roomRoom) ? `/book/confirmation` : `/welcome/${this.state.id}`;
+    let id = (this.state.email !== undefined) ? this.state.email.split("@") : [];
+    let ID = id[0];
+    let next = (this.props.room.room) ? `/book/confirmation` : `/welcome/${ID}`;
+    //logout button if signed in
     const secondButton = (this.props.login.login) ?
-      <button className="btn btn-secondary" onClick={() => this.props.updateLogin({
+      <button className="btn btn-secondary" onClick={() => this.props.logout({
         login: false,
-        email: '',
-        id: '',
-        password: '',
+        user: {}
       })}>
         Logout
       </button> :
@@ -78,12 +75,9 @@ class Login extends React.Component {
 
           <button type="submit" className="btn btn-primary">
             <NavLink className="select" to={next} onClick={() =>{
-              this.props.updateLogin({
-                login:true,
+              this.props.fetchUser({
                 email:this.state.email,
-                id:this.state.id,
-                password:this.state.password,
-              });
+                password:this.state.password,})
             }}>
               Login
             </NavLink>
@@ -93,10 +87,8 @@ class Login extends React.Component {
         <SignUp
           makeModal={this.props.makeModal}
           modalVisible={this.props.modalVisible}
-          updateLogin={this.props.updateLogin}
-          updateBilling={this.props.updateBilling}
+          updateUser={this.props.updateUser}
           login={this.props.login}
-          billing={this.props.billing}
         />
       </div>
     );
@@ -105,3 +97,10 @@ class Login extends React.Component {
 
 
 export default Login;
+
+// this.props.updateLogin({
+//   login:true,
+//   email:this.state.email,
+//   id:this.state.id,
+//   password:this.state.password,
+// });

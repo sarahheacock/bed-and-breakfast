@@ -53,9 +53,10 @@ const Book = (props) => {
             <Payment
               room={props.room}
               login={props.login}
-              updateLogin={props.updateLogin}
-              billing={props.billing}
-              updateBilling={props.updateBilling}
+              fetchUser={props.fetchUser}
+              updateUser={props.updateUser}
+              logout={props.logout}
+
               modalVisible={props.modalVisible}
               makeModal={props.makeModal}
             /> :
@@ -65,9 +66,8 @@ const Book = (props) => {
           <Route path="/book/confirmation" render={ () => (props.room.room && props.login.login) ?
             <Confirmation
               room={props.room}
-              credit={props.credit}
-              updateCredit={props.updateCredit}
-              postSearch={props.postSearch}
+              login={props.login}
+              chargeClient={props.chargeClient}
               modalVisible={props.modalVisible}
               makeModal={props.makeModal}
             /> :
@@ -88,18 +88,17 @@ const Book = (props) => {
 export default Book;
 
 Book.propTypes = {
+  chargeClient: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   login: PropTypes.object.isRequired,
-  updateLogin: PropTypes.func.isRequired,
-  billing: PropTypes.object.isRequired,
-  updateBilling: PropTypes.func.isRequired,
-  credit: PropTypes.object.isRequired,
-  updateCredit: PropTypes.func.isRequired,
+
   updateRoom: PropTypes.func.isRequired,
   room: PropTypes.object.isRequired,
 
   searchResults: PropTypes.array.isRequired,
   fetchSearch: PropTypes.func.isRequired,
-  postSearch: PropTypes.func.isRequired,
 
   makeModal: PropTypes.func.isRequired,
   modalVisible: PropTypes.bool.isRequired,

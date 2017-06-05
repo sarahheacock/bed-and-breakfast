@@ -10,15 +10,15 @@ const Payment = (props) => {
     <div className="tab-content">
       <Selected room={props.room}/>
       <Login
-        updateLogin={props.updateLogin}
+        fetchUser={props.fetchUser}
+        updateUser={props.updateUser}
+        logout={props.logout}
         login={props.login}
-        updateBilling={props.updateBilling}
-        billing={props.billing}
 
         modalVisible={props.modalVisible}
         makeModal={props.makeModal}
 
-        roomRoom={props.room.room}
+        room={props.room}
       />
     </div>
   )
@@ -30,9 +30,10 @@ export default Payment;
 Payment.propTypes = {
   room: PropTypes.object.isRequired,
   login: PropTypes.object.isRequired,
-  updateLogin: PropTypes.func.isRequired,
-  billing: PropTypes.object.isRequired,
-  updateBilling: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+
   modalVisible: PropTypes.bool.isRequired,
   makeModal: PropTypes.func.isRequired
 }

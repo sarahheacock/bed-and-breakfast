@@ -10,36 +10,38 @@ import Personal from './welcomeTabs/Personal';
 //an Api will be needed to pull out current stuff
 const Welcome = (props) => {
 
+  const id = (props.login.user.email !== undefined) ? props.login.user.email.split("@") : [];
+  const ID = id[0];
   //let name = params[name];
   return (
     <div className="main-content text-center">
-      <PageHeader>Welcome {props.login.id}!</PageHeader>
+      <PageHeader>Welcome {ID}!</PageHeader>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row className="clearfix">
 
         <Col sm={4}>
           <Nav bsStyle="pills" stacked>
-            <LinkContainer to={`/welcome/${props.login.id}/upcoming`}>
+            <LinkContainer to={`/welcome/${ID}/upcoming`}>
               <NavItem className="tab">Upcoming Stays</NavItem>
             </LinkContainer>
-            <LinkContainer to={`/welcome/${props.login.id}/personal-info`}>
+            <LinkContainer to={`/welcome/${ID}/personal-info`}>
               <NavItem className="tab">Personal Info</NavItem>
             </LinkContainer>
           </Nav>
         </Col>
 
         <Col sm={8}>
-          <Route exact path={`/welcome/${props.login.id}/`} render={ () =>
-            <Redirect to={`/welcome/${props.login.id}/upcoming`} /> }
+          <Route exact path={`/welcome/${ID}/`} render={ () =>
+            <Redirect to={`/welcome/${ID}/upcoming`} /> }
           />
 
-          <Route path={`/welcome/${props.login.id}/upcoming`} render={ () =>
+          <Route path={`/welcome/${ID}/upcoming`} render={ () =>
             <Upcoming
 
             /> }
           />
 
-          <Route path={`/welcome/${props.login.id}/personal-info`} render={ () =>
+          <Route path={`/welcome/${ID}/personal-info`} render={ () =>
             <Personal
             /> }
           />
@@ -55,6 +57,4 @@ export default Welcome;
 
 Welcome.propTypes = {
   login: PropTypes.object.isRequired,
-  billing: PropTypes.object.isRequired,
-  room: PropTypes.object.isRequired
 }
