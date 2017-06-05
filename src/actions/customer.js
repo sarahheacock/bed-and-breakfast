@@ -2,34 +2,9 @@ import * as CustomerActionTypes from '../actiontypes/customer';
 import axios from 'axios';
 
 const apiUrl = 'https://fathomless-meadow-60353.herokuapp.com/hotel';
-// {"__v":0,
-// "date":"1970-01-01T00:00:45.678Z",
-// "_id":"593318af8891ed00115cbcff",
-// "free":{
-//   "_id":"593318af8891ed00115cbcfe",
-//   "Lily":3,
-//   "Brandywine":7,
-//   "Lakeview":5
-// }}
-
 const userUrl = 'https://sleepy-island-69507.herokuapp.com/user';
-// [
-//   {
-//     "_id": "59318a8af71e81029bbd3223",
-//     "email": "Adam",
-//     "__v": 1,
-//     "upcoming": [
-//       {
-//         "arrive": 1234567,
-//         "depart": 2345677,
-//         "guests": 2,
-//         "room": "Lily",
-//         "_id": "593434f228d27310bc60814a",
-//         "createdAt": "2017-06-04T16:27:30.209Z"
-//       }
-//     ]
-//   }
-// ]
+
+
 export const makeModal = () => {
   return {
     type: CustomerActionTypes.MAKE_MODAL,
@@ -86,7 +61,6 @@ export const fetchSearch = (arrive, depart) => {
         //dispatch another action
         //to consume data
         if(results.length === dateArr.length){
-          //console.log(dispatch(fetchSearchSuccess(results)));
           dispatch(fetchSearchSuccess(results));
         }
       })
@@ -110,15 +84,15 @@ export const updateUpcomingSuccess = (data) => {
 export const updateUpcoming = (data) => {
   return (dispatch) => {
     //post("/:userID/:password/upcoming"
-    console.log("login", data.login);
-      return axios.post(`${userUrl}/${data.login.email}/${data.login.password}/upcoming`, {
+      return axios.post(`${userUrl}/${data.login._id}/upcoming`, {
         "arrive": data.room.arrive,
         "depart": data.room.depart,
         "guests": data.room.guests,
         "room": data.room.name.name
       })
       .then(response => {
-        dispatch(updateUpcomingSuccess(response.data))
+        console.log("response data", response.data);
+        dispatch(updateUpcomingSuccess(response.data));
       })
       .catch(error => {
         throw(error);
@@ -192,7 +166,7 @@ export const userSuccess = (data) => {
 export const fetchUser = (formData) => {
   return (dispatch) => {
     //get("/:userID/:password/"
-      return axios.get(`${userUrl}/${formData.email}/${formData.password}`)
+      return axios.get(`${userUrl}/authenticate/${formData.email}/${formData.password}`)
       .then(response => {
         dispatch(userSuccess(response.data))
       })
@@ -204,12 +178,6 @@ export const fetchUser = (formData) => {
 
 //==============CREATE CLIENT=====================================
 // (2) SUCCESS/UPDATE LOGIN PROP
-// export const updateUserSuccess = (data) => {
-//   return {
-//     type: CustomerActionTypes.UPDATE_USER_SUCCESS,
-//     data
-//   }
-// }
 
 // (1) UPDATE CLIENT'S ACCOUNT
 export const updateUser = (formData) => {
@@ -229,42 +197,3 @@ export const updateUser = (formData) => {
       });
   };
 }
-
-
-//
-// export const updateLoginSuccess = (login) => {
-//   return {
-//     type: CustomerActionTypes.UPDATE_LOGIN_SUCCESS,
-//     login,
-//   }
-// }
-//
-//
-//
-// export const updateBilling = (billing) => {
-//   return {
-//     type: CustomerActionTypes.UPDATE_BILLING,
-//     billing,
-//   }
-// }
-//
-// export const updateCredit = (credit) => {
-//   return {
-//     type: CustomerActionTypes.UPDATE_CREDIT,
-//     credit,
-//   }
-// }
-//
-
-
-
-
-
-// Sync Action
-// export const postSearchSuccess = (results) => {
-//   //console.log("search success");
-//   return {
-//     type: CustomerActionTypes.POST_SEARCH_SUCCESS,
-//     results
-//   }
-// };

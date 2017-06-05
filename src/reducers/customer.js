@@ -47,6 +47,7 @@ export default function Customer(state={}, action){
       };
       const newRoom = {
         room: false,
+        guests: 2,
         name: {},
         arrive: NOW,
         depart: NOW + 24*60*60*1000,
@@ -69,41 +70,6 @@ export default function Customer(state={}, action){
         login: newLogin
       }
     }
-
-    // case CustomerActionTypes.UPDATE_LOGIN_SUCCESS: {
-    //
-    //   return {
-    //     ...state,
-    //     login: action.login
-    //   }
-    // }
-    //
-    // case CustomerActionTypes.UPDATE_BILLING: {
-    //   return {
-    //     ...state,
-    //     billing: action.billing
-    //   }
-    // }
-    //
-    // case CustomerActionTypes.UPDATE_CREDIT: {
-    //   return {
-    //     ...state,
-    //     credit: action.credit
-    //   }
-    // }
-
-
-
-
-
-    // case CustomerActionTypes.POST_SEARCH_SUCCESS: {
-    //   return {
-    //     ...state,
-    //     //CHANGE LATER
-    //     searchResults: action.results
-    //   }
-    // }
-
 
     default:
       return state;

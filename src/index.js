@@ -33,7 +33,15 @@ const log = {
   user: {}
 };
 
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    sessionStorage.setItem('info', serializedState);
+  }
+  catch(err){
 
+  }
+};
 
 //=======================================================================
 let results = [];
@@ -50,9 +58,20 @@ axios.get(`https://fathomless-meadow-60353.herokuapp.com/hotel/${select.arrive}`
       searchResults:results
     };
 
+    //NEED TO TIME OUT SESSIONSTORAGE AND STORAGE SESSION IN TOKENS
+    //console.log(JSON.parse(sessionStorage.info));
+    const initial = (sessionStorage.info !== undefined) ?
+      {...JSON.parse(sessionStorage.info)} :
+      initialState;
+
     const store = createStore(
-      CustomerReducer, initialState, applyMiddleware(thunk)
+      CustomerReducer, initial, applyMiddleware(thunk)
     );
+
+    store.subscribe(() => {
+      saveState(store.getState());
+    });
+
     ReactDOM.render(
       <Provider store={store}>
         <App />
