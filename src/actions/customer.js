@@ -162,13 +162,37 @@ export const userSuccess = (data) => {
   }
 }
 
+//(2) GET CLIENT'S UPCOMING
+export const fetchUpcoming = (data) => {
+  return (dispatch) => {
+    //if there are no upcoming...
+    if(data.upcoming.length === 0) return dispatch(userSuccess(data));
+
+    let result = [];
+    //get("/:userID/:upcomingID/"
+    return data.upcoming.forEach((upcoming) => {
+      axios.get(`${userUrl}/${data._id}/${upcoming._id}`)
+      .then(response => {
+        result.push(response.data);
+        if(result.length === data.upcoming.length){
+          dispatch(fetchUpcoming({...data, upcoming: result}));
+        }
+      })
+      .catch(error => {
+        throw(error);
+      });
+    })
+
+  };
+}
+
 // (1) GET CLIENT'S ACCOUNT
 export const fetchUser = (formData) => {
   return (dispatch) => {
-    //get("/:userID/:password/"
+    //get("/authenticate/:email/:password/"
       return axios.get(`${userUrl}/authenticate/${formData.email}/${formData.password}`)
       .then(response => {
-        dispatch(userSuccess(response.data))
+        dispatch(fetchUpcoming(response.data))
       })
       .catch(error => {
         throw(error);

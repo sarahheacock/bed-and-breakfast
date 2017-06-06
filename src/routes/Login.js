@@ -49,7 +49,7 @@ class Login extends React.Component {
     //determines if next route is welcome or confirmation
     let id = (this.state.email !== undefined) ? this.state.email.split("@") : [];
     let ID = id[0];
-    let next = (this.props.room.room) ? `/book/confirmation` : `/welcome/${ID}`;
+    let next = (this.props.room.room) ? "/book/confirmation" : `/welcome/${ID}`;
     //logout button if signed in
     const secondButton = (this.props.login.login) ?
       <button className="btn btn-secondary" onClick={() => this.props.logout({

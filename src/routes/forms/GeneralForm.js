@@ -23,7 +23,7 @@ const GeneralForm = (props) => {
             className="form-control"
             id="exampleInputPassword1"
             placeholder="Password"
-            value={props.passwordValue}
+            
             onChange={props.passwordChange}
           />
         </div>

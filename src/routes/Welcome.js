@@ -37,12 +37,13 @@ const Welcome = (props) => {
 
           <Route path={`/welcome/${ID}/upcoming`} render={ () =>
             <Upcoming
-
+              login={props.login}
             /> }
           />
 
           <Route path={`/welcome/${ID}/personal-info`} render={ () =>
             <Personal
+              login={props.login}
             /> }
           />
 

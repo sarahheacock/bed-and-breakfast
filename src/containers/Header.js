@@ -31,6 +31,9 @@ const Header = (props) => {
               <LinkContainer to="/about">
                 <NavItem>About</NavItem>
               </LinkContainer>
+              <LinkContainer to="/location">
+                <NavItem>Location</NavItem>
+              </LinkContainer>
               <LinkContainer to="/book">
                 <NavItem>Book</NavItem>
               </LinkContainer>

@@ -13,6 +13,7 @@ import Rooms from '../routes/data/roomList';
 //components
 import Header from './Header';
 import About from '../routes/About';
+import Location from '../routes/Location';
 import AboutDetail from '../routes/AboutDetail';
 import Book from '../routes/Book';
 import Home from '../routes/Home';
@@ -67,6 +68,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/location" component={Location} />
             <Route exact path="/about" component={About} />
             {roomRoutes}
             <Route path="/book" render={ () => (
